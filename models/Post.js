@@ -53,6 +53,7 @@ Post.init(
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
+      
     },
     title: {
       type: DataTypes.STRING,
@@ -72,6 +73,7 @@ Post.init(
         key: "id",
       },
     },
+
   },
   {
     sequelize,
