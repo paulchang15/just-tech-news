@@ -53,7 +53,6 @@ Post.init(
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-      
     },
     title: {
       type: DataTypes.STRING,
@@ -74,6 +73,33 @@ Post.init(
       },
     },
 
+    //   hooks: {
+    //     beforeDestroy((user, options) => {
+    //       Comment.findAll({
+    //         where: {
+    //           post_id: req.params.id,
+    //         },
+    //       }).then((data) => {
+    //         console.log(data);
+
+    //         Comment.destroy({
+    //           id: parseInt(data),
+    //         });
+
+    //         Vote.findAll({
+    //           where: {
+    //             post_id: req.params.id,
+    //           },
+    //         }).then((data) => {
+    //           console.log(data);
+    //           const id = data.split("");
+    //           Vote.destroy({
+    //             id: parseInt(data),
+    //           })
+    //         })
+    //       })
+    //     })
+    //   }
   },
   {
     sequelize,
@@ -83,4 +109,8 @@ Post.init(
   }
 );
 
+// await Post.destroy({
+//   where: { accessLevel: 0 },
+//   individualHooks: true
+// });
 module.exports = Post;

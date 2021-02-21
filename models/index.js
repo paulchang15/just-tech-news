@@ -1,85 +1,71 @@
-// import all models
-const Post = require("./Post");
 const User = require("./User");
+const Post = require("./Post");
 const Vote = require("./Vote");
 const Comment = require("./Comment");
 
 // create associations
 User.hasMany(Post, {
   foreignKey: "user_id",
-  onDelete: "CASCADE",
-  allowNull: false,
+  onDelete: "SET NULL",
 });
 
 Post.belongsTo(User, {
   foreignKey: "user_id",
-  onDelete: "CASCADE",
-  allowNull: false,
+  onDelete: "SET NULL",
 });
 
 User.belongsToMany(Post, {
   through: Vote,
   as: "voted_posts",
-
   foreignKey: "user_id",
-  onDelete: "CASCADE",
-  allowNull: false,
+  onDelete: "SET NULL",
 });
 
 Post.belongsToMany(User, {
   through: Vote,
   as: "voted_posts",
   foreignKey: "post_id",
-  onDelete: "CASCADE",
-  allowNull: false,
+  onDelete: "SET NULL",
 });
 
 Vote.belongsTo(User, {
   foreignKey: "user_id",
-  onDelete: "CASCADE",
-  allowNull: false,
+  onDelete: "SET NULL",
 });
 
 Vote.belongsTo(Post, {
   foreignKey: "post_id",
-  onDelete: "CASCADE",
-  allowNull: false,
+  onDelete: "SET NULL",
 });
 
 User.hasMany(Vote, {
   foreignKey: "user_id",
-  onDelete: "CASCADE",
-  allowNull: false,
+  onDelete: "SET NULL",
 });
 
 Post.hasMany(Vote, {
   foreignKey: "post_id",
-  onDelete: "CASCADE",
-  allowNull: false,
+  onDelete: "SET NULL",
 });
 
 Comment.belongsTo(User, {
   foreignKey: "user_id",
-  onDelete: "CASCADE",
-  allowNull: false,
+  onDelete: "SET NULL",
 });
 
 Comment.belongsTo(Post, {
   foreignKey: "post_id",
-  onDelete: "CASCADE",
-  allowNull: false,
+  onDelete: "SET NULL",
 });
 
 User.hasMany(Comment, {
   foreignKey: "user_id",
-  onDelete: "CASCADE",
-  allowNull: false,
+  onDelete: "SET NULL",
 });
 
 Post.hasMany(Comment, {
   foreignKey: "post_id",
-  onDelete: "CASCADE",
-  allowNull: false,
+  onDelete: "SET NULL",
 });
 
 module.exports = { User, Post, Vote, Comment };
